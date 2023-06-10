@@ -1,0 +1,49 @@
+import java.util.* ;
+import java.io.*; 
+/****************************************************************
+
+    Following is the class structure of the Pair class:
+
+        class Pair
+        {
+        	int weight;
+	        int value;
+	        Pair(int weight, int value)
+	        {
+		        this.weight = weight;
+		        this.value = value;
+	        }
+	        
+        }
+        
+*****************************************************************/
+
+
+public class Solution {
+    public static double maximumValue(Pair[] items, int n, int w) {
+            // Write your code here.
+    	    // ITEMS contains {weight, value} pairs.
+			double arr[][]=new double[n][3];
+			int j=0;
+			for(Pair i:items){
+               arr[j][0]=(i.value)/(1.0*(i.weight));
+               arr[j][1]=1.0*(i.value);
+			   arr[j][2]=1.0*(i.weight);
+			   j++;
+			}
+			Arrays.sort(arr,(a,b)->Double.compare(a[0],b[0]));
+			double res=0;
+		 j=n-1;
+			while(w>0 && j>=0){
+				if(w>arr[j][2])
+                res+=arr[j][1];
+				else{
+				res+=(double)(((1.0*w)/arr[j][2])*arr[j][1]);
+				break;
+				}
+				w=w-(int)arr[j][2];
+				j--;
+			}
+			return res;
+    }
+}
