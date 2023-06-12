@@ -1,0 +1,31 @@
+Breakpoint:
+lefthand-
+even-1st instance
+odd-2nd instance
+righthand-
+odd-1st instance
+even-2nd instance
+public static int singleNonDuplicate(ArrayList<Integer> arr)
+    {
+        //    Write your code here.
+        int n=arr.size()-2;
+        int l=0,h=n;
+        while(l<=h){
+            int mid=l+(h-l)/2;
+            int x=arr.get(mid);
+            int y=arr.get(mid+1);
+            if(mid%2==0){
+                if(x!=y)
+                h=mid-1;
+                else
+                l=mid+1;
+            }
+            else{
+                if(x==y)
+                 h=mid-1;
+                else
+                l=mid+1;
+            }
+        }
+        return arr.get(l);
+    }
