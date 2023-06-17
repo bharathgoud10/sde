@@ -1,0 +1,21 @@
+//Input: s = "YazaAay"
+// Output: "aAa"
+// Explanation: "aAa" is a nice string because 'A/a' is the only letter of the alphabet in s, and both 'A' and 'a' appear.
+// "aAa" is the longest nice substring.
+public String longestNiceSubstring(String s) {
+        int n=s.length();
+        if(n<2)return "";
+        HashSet<Character> hs=new HashSet<>();
+        for(int i=0;i<n;i++)
+         hs.add(s.charAt(i));
+
+         for(int i=0;i<n;i++){
+             char c=s.charAt(i);
+             if(hs.contains(Character.toLowerCase(c))&& hs.contains(Character.toUpperCase(c)))
+             continue;
+             String prev=longestNiceSubstring(s.substring(0,i));
+             String next=longestNiceSubstring(s.substring(i+1));
+             return (prev.length()>=next.length())?prev:next;
+         }
+         return s;
+    }
