@@ -1,0 +1,24 @@
+//Input:6
+//900 940 950 1100 1500 1800
+//910 1200 1120 1130 1900 2000
+//Output:3
+ public static int calculateMinPatforms(int at[], int dt[], int n) {
+        //platforms req->pr
+        Arrays.sort(at);
+        Arrays.sort(dt);
+        int maxi=0,pr=1;
+        int i=1,j=0;
+        while(i<n && j<n){
+            if(at[i]<=dt[j]){
+                pr++;
+                i++;
+            }
+            else{
+                pr--;
+                j++;
+            }
+            maxi=Math.max(maxi,pr);
+        }
+        maxi=Math.max(maxi,pr);
+        return maxi;
+    }
