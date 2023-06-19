@@ -1,0 +1,31 @@
+Type-1: Arrays
+Arrays.sort(arr,(a,b)->Integer.compare(a[0],b[0])
+Arrays.sort(arr,new Comparator<int[]>){
+       public int compare(int[] a,int[] b){
+             return a[0]-b[0]    }      })
+Type-2: List
+Collections.sort(ls,(a,b)->(a.get(0)-b.get(0)))
+List<int[]> ls=new ArrayList<>(size)
+ls.sort(ls,new Comparator<int[]>){
+       public int compare(int[] a,int[] b){
+             return a[0]-b[0]    }      })
+
+Type-3: Class
+ class Activity{
+    int start;
+    int end;
+    Activity(int start, int end){
+        this.start = start;
+        this.end = end; 
+    }
+}
+ArrayList<Activity> ls = new ArrayList<>();
+ for(int i=0;i<start.size();i++){
+            ls.add(new Activity(start.get(i),end.get(i)));
+        }
+        ls.sort(new Comparator<Activity>() {
+            public int compare(Activity a,Activity b){
+                return a.end-b.end;
+            }
+        });
+    
