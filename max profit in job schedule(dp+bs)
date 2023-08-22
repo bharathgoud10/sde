@@ -1,0 +1,38 @@
+class Solution {
+    int dp[];
+    int find(int arr[][],int x){
+        int si=0,ei=arr.length-1;
+        int ans=ei+3;
+        while(si<=ei){
+            int mid=si+(ei-si)/2;
+            if(arr[mid][0]>=x){
+                ans=mid;
+            ei=mid-1;
+            }
+            else
+            si=mid+1;
+        }
+        return si;
+    }
+    int f(int i,int arr[][]){
+        if(i>=arr.length)
+        return 0;
+        if(dp[i]!=-1)return dp[i];
+        int nxt=find(arr,arr[i][1]);
+        int take=arr[i][2]+f(nxt,arr);
+        int not=f(i+1,arr);
+        return dp[i]=Math.max(take,not);
+    }
+    public int jobScheduling(int[] st, int[] et, int[] profit) {
+        int arr[][]=new int[st.length][3];
+        for(int i=0;i<st.length;i++){
+            arr[i][0]=st[i];
+            arr[i][1]=et[i];
+            arr[i][2]=profit[i];
+        }
+        Arrays.sort(arr,(a,b)->Integer.compare(a[0],b[0]));
+        dp=new int[arr.length+1];
+        Arrays.fill(dp,-1);
+        return f(0,arr);
+    }
+}
